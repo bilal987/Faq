@@ -1,0 +1,585 @@
+<!-- nws-faqs -->
+<style>
+.breadcrumbs li, .breadcrumbs li a, .breadcrumbs li:before {
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.breadcrumbs a:not(:hover) {
+    color: #000;
+}  
+.nws-tabs .breadcrumbs {
+    padding-left: 75px;
+}  
+.nws-faqs .nws-tabs {
+    border: 1px solid #F4DFDE;
+    background-color: #FFF3F2;
+}
+.nws-tab-item h4 {
+    font-family:"futura-pt";
+    font-size: 20px;
+    text-align: center;
+    padding: 20px 20px 40px;
+    font-weight: 500;
+    color: #000;
+} 
+.tab-button.active h4 {
+    color: #F4B0B1;
+}  
+.nws-tab-row .tab-button.active {
+    border: 3px solid #F4B0B1;
+    border-radius: 10px;
+}  
+.tab-button.active .nws-svg svg path {
+    stroke: #F4B0B1;
+}  
+.tab-button.active .nws-svg.svg2 svg path {
+    stroke: #F4B0B1;
+    fill: #F4B0B1;
+}  
+.huzi-ac-title {
+    font-family:"playfair-display";
+    margin: 0;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #43494e;
+    padding-right: 25px;
+}  
+.huzi-ac-title.active {
+    color: #4C1E1E;
+} 
+.huzi-accordion-warp .huzi-ac-item .huzi-ac-body {
+    padding: 18px 0;
+    overflow: hidden;
+    transition: max-height .2s ease-out;
+    display: none;
+    font-size: 17px;
+}  
+.huzi-ac-title.active:after {
+    content: "";
+    background: #4C1E1E;
+    display: block;
+    width: 13px;
+    height: 2px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}  
+.nws-bottom-text h2 {
+    color: #000;
+}
+.huzi-ac-title:after {
+    transform: translateY(-45%);
+    font-size: 25px;
+    font-weight: 600;
+}  
+.tab-contents .nws-btn-one {
+    background: #F7BCBD;
+    color: #4C1E1E;
+    max-width: 405px;
+    margin: auto;
+}
+.tab-contents .nws-btn-one:hover {
+  background: #4C1E1E;
+  color: #fff;
+}  
+</style>
+
+<!-- end nws-faqs -->
+
+<div class="nws-faqs">
+  <!--  nws tab upper section start    -->
+  <div data-aos="zoom-in" data-aos-delay="600" class="nws-tabs" style="background:{{ section.settings.bg_color }};">
+    <div class="container-fluid">
+     {%-render 'kt_breadcrumb'-%}
+    </div> 
+    <div class="container">      
+      <div class="nws-tabs-text">
+        <h2 data-aos="zoom-in" data-aos-delay="800" class="huzi-h2" style="color:{{ section.settings.head_color }}">{{ section.settings.main_head }}</h2>
+        <p data-aos="zoom-in" data-aos-delay="1000" class="huzi-p" style="color:{{ section.settings.subh_color }}">{{ section.settings.sub_head }}</p>  
+        <!-- for mobile-->
+        <div data-aos="zoom-in" data-aos-delay="1200" class="huzi-dnone" style="padding-top: 40px">
+          <select class="huzi-dropdown" id="huzi-faq-page-list">
+            <option value="#general-faqs">{{ section.settings.icon_text1 }}</option>
+            <option value="#gut-renew">{{ section.settings.icon_text2 }}</option>
+            <option value="#bloat-digest">{{ section.settings.icon_text3 }}</option>
+          </select>
+        </div>
+        <div class="nws-tab-row">
+          <a data-aos="zoom-in" data-aos-delay="1200" href="#general-faqs" class="active tab-button">          
+            <div class="nws-tab-item">
+              <div class="nws-svg">
+                <svg width="46" height="45" viewBox="0 0 46 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M37.35 13.7312C36.8716 12.919 36.3335 12.1436 35.74 11.4112L37.65 7.08125C37.7887 6.71894 37.7945 6.31919 37.6664 5.95302C37.5382 5.58684 37.2844 5.27796 36.95 5.08125L30.6 1.24125C30.256 1.05495 29.8582 0.993006 29.4738 1.06588C29.0895 1.13874 28.742 1.34196 28.49 1.64125L25.67 5.47124C23.7686 5.16914 21.8314 5.16914 19.93 5.47124L17.11 1.64125C16.8734 1.32096 16.5246 1.10182 16.1334 1.02765C15.7422 0.953488 15.3374 1.02977 15 1.24125L8.56 4.97125C8.22561 5.16796 7.97179 5.47684 7.84363 5.84302C7.71547 6.20919 7.72127 6.60894 7.86 6.97124L9.76 11.3412C8.5351 12.8044 7.58023 14.4737 6.94 16.2712L2.41 16.7712C2.02699 16.8233 1.67492 17.0097 1.41665 17.2973C1.15838 17.5849 1.01071 17.9549 1 18.3412V25.7912C1.00123 26.1846 1.14463 26.5642 1.40376 26.8601C1.6629 27.1559 2.02028 27.3482 2.41 27.4012L7.14 27.9012C7.81991 29.6803 8.77118 31.3433 9.96 32.8312L8.05 37.1612C7.91127 37.5235 7.90547 37.9233 8.03363 38.2895C8.16179 38.6557 8.41561 38.9645 8.75 39.1612L15.19 42.8912C15.534 43.0775 15.9318 43.1395 16.3162 43.0666C16.7005 42.9938 17.048 42.7905 17.3 42.4912L20.12 38.6612C22.0214 38.9634 23.9586 38.9634 25.86 38.6612L28.68 42.4912C28.9166 42.8115 29.2654 43.0307 29.6566 43.1048C30.0478 43.179 30.4526 43.1027 30.79 42.8912L37.23 39.1612C37.5644 38.9645 37.8182 38.6557 37.9464 38.2895C38.0745 37.9233 38.0687 37.5235 37.93 37.1612L36.02 32.8312C37.2449 31.3681 38.1998 29.6988 38.84 27.9012L43.57 27.4012C43.9597 27.3482 44.3171 27.1559 44.5762 26.8601C44.8354 26.5642 44.9788 26.1846 44.98 25.7912V18.3412C44.9788 17.9479 44.8354 17.5683 44.5762 17.2724C44.3171 16.9765 43.9597 16.7843 43.57 16.7312L38.84 16.2312C38.2569 15.4526 37.7575 14.6146 37.35 13.7312Z"  stroke="#43494E"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M23.1898 31.3914C28.2156 31.3914 32.2898 27.3172 32.2898 22.2914C32.2898 17.2656 28.2156 13.1914 23.1898 13.1914C18.1641 13.1914 14.0898 17.2656 14.0898 22.2914C14.0898 27.3172 18.1641 31.3914 23.1898 31.3914Z"  stroke="#43494E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h4>{{ section.settings.icon_text1 }}</h4>            
+            </div> 
+          </a>           
+          <a data-aos="zoom-in" data-aos-delay="1300" href="#gut-renew" class="tab-button">          
+            <div class="nws-tab-item">
+              <div class="nws-svg svg2">
+               <svg width="46" height="45" viewBox="0 0 48 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.24542 50.0293H45.7562C46.1316 50.0293 46.4915 49.8802 46.7569 49.6148C47.0223 49.3494 47.1714 48.9895 47.1714 48.6142V23.1416C47.1714 22.7663 47.0223 22.4064 46.7569 22.141C46.4915 21.8756 46.1316 21.7265 45.7562 21.7265H45.2845V5.82031C45.2916 5.63505 45.2511 5.45106 45.1669 5.2859C45.0826 5.12074 44.9575 4.97992 44.8034 4.87688L44.2939 4.59385L37.4258 7.7732C35.6008 5.38797 33.2575 3.44886 30.5729 2.10246C27.8883 0.75606 24.9327 0.0376132 21.9297 0.00143751C18.9266 -0.0347382 15.9546 0.612303 13.2383 1.89364C10.5221 3.17498 8.13272 5.05709 6.25084 7.39766C4.36895 9.73824 3.04382 12.476 2.37562 15.404C1.70742 18.3321 1.71365 21.3737 2.39383 24.2989C3.07401 27.2242 4.41033 29.9565 6.30178 32.2894C8.19323 34.6222 10.5903 36.4946 13.3118 37.7648H5.46245C4.51414 37.7648 3.60467 38.1415 2.93412 38.812C2.26357 39.4826 1.88686 40.3921 1.88686 41.3404V42.4819H0V45.7839C0.00249213 46.9091 0.450577 47.9875 1.24621 48.7831C2.04184 49.5787 3.12023 50.0268 4.24542 50.0293ZM32.0765 48.1425V44.3688H33.9634V48.1425H32.0765ZM35.8502 48.1425V44.3688H37.7371V48.1425H35.8502ZM39.624 48.1425V44.3688H41.5108V48.1425H39.624ZM45.2845 48.1425H43.3977V44.3688H45.2845V48.1425ZM45.2845 42.4819H32.0765V34.9345H45.2845V42.4819ZM32.0765 10.9714V21.7265H31.6048C31.2295 21.7265 30.8696 21.8756 30.6042 22.141C30.3388 22.4064 30.1897 22.7663 30.1897 23.1416V31.1608C27.7463 33.0097 24.7629 34.0042 21.6988 33.9911C19.3375 33.9943 17.0129 33.4065 14.9368 32.2814C12.8607 31.1562 11.0992 29.5295 9.81274 27.5493C8.52628 25.5692 7.75577 23.2986 7.57143 20.9444C7.38709 18.5903 7.79477 16.2274 8.75733 14.0711C9.71988 11.9149 11.2067 10.0337 13.0823 8.59916C14.958 7.16458 17.1628 6.22215 19.4958 5.85776C21.8289 5.49336 24.2161 5.71857 26.4398 6.51287C28.6636 7.30718 30.6532 8.64532 32.2275 10.4054C32.1262 10.5766 32.074 10.7725 32.0765 10.9714ZM32.0765 31.1608H45.2845V33.0476H32.0765V31.1608ZM30.1897 37.7648H30.1236H30.1897ZM45.2845 29.2739H32.0765V23.6133H45.2845V29.2739ZM43.3977 21.7265H33.9634V11.4809L43.3977 7.1128V21.7265ZM3.77371 19.8396C3.77371 15.0856 5.66224 10.5263 9.02386 7.16467C12.3855 3.80305 16.9448 1.91452 21.6988 1.91452C24.3811 1.9032 27.031 2.50006 29.4494 3.66023C31.8678 4.82041 33.9917 6.51371 35.6616 8.61285L33.8785 9.46194C31.888 7.11891 29.266 5.39736 26.3248 4.5023C23.3836 3.60724 20.2471 3.57639 17.2889 4.41343C14.3306 5.25047 11.6753 6.92013 9.63913 9.22355C7.60295 11.527 6.27171 14.3671 5.80396 17.4057C5.33621 20.4443 5.75166 23.5533 7.00083 26.3624C8.25 29.1716 10.2802 31.5625 12.8498 33.2505C15.4193 34.9385 18.4199 35.8523 21.4941 35.8833C24.5683 35.9142 27.5867 35.0609 30.1897 33.425V35.6232C27.4591 37.0918 24.3943 37.8271 21.2946 37.7572C18.1949 37.6873 15.1663 36.8145 12.5047 35.2242C9.84316 33.6339 7.63958 31.3805 6.10927 28.684C4.57896 25.9875 3.77423 22.9401 3.77371 19.8396ZM3.77371 41.3404C3.77371 40.8925 3.95163 40.4629 4.26833 40.1462C4.58503 39.8295 5.01456 39.6516 5.46245 39.6516H30.1897V42.4819H3.77371V41.3404ZM1.88686 44.3688H30.1897V48.1425H4.24542C3.61989 48.1425 3.01998 47.894 2.57766 47.4517C2.13535 47.0093 1.88686 46.4094 1.88686 45.7839V44.3688Z" fill="#545454"/>
+                <path d="M11.321 17.9527C11.4451 17.9534 11.5682 17.9296 11.6832 17.8827C11.7981 17.8357 11.9026 17.7666 11.9908 17.6791L18.5948 11.0751C18.7724 10.8975 18.8722 10.6565 18.8722 10.4053C18.8722 10.1541 18.7724 9.91311 18.5948 9.73546C18.4171 9.55781 18.1762 9.45801 17.925 9.45801C17.6737 9.45801 17.4328 9.55781 17.2551 9.73546L10.6511 16.3395C10.5627 16.4272 10.4925 16.5315 10.4446 16.6465C10.3967 16.7614 10.3721 16.8847 10.3721 17.0093C10.3721 17.1338 10.3967 17.2571 10.4446 17.3721C10.4925 17.4871 10.5627 17.5914 10.6511 17.6791C10.7393 17.7666 10.8438 17.8357 10.9588 17.8827C11.0737 17.9296 11.1968 17.9534 11.321 17.9527ZM22.9157 9.73546L10.6511 22C10.5627 22.0877 10.4925 22.1921 10.4446 22.307C10.3967 22.422 10.3721 22.5453 10.3721 22.6699C10.3721 22.7944 10.3967 22.9177 10.4446 23.0327C10.4925 23.1476 10.5627 23.252 10.6511 23.3397C10.7388 23.4281 10.8432 23.4983 10.9581 23.5462C11.0731 23.5941 11.1964 23.6188 11.321 23.6188C11.4455 23.6188 11.5688 23.5941 11.6838 23.5462C11.7988 23.4983 11.9031 23.4281 11.9908 23.3397L24.2554 11.0751C24.433 10.8975 24.5328 10.6565 24.5328 10.4053C24.5328 10.1541 24.433 9.91311 24.2554 9.73546C24.0777 9.55781 23.8368 9.45801 23.5855 9.45801C23.3343 9.45801 23.0933 9.55781 22.9157 9.73546Z" fill="#545454"/>
+                </svg>
+              </div>            
+              <h4>{{ section.settings.icon_text2 }}</h4>            
+            </div> 
+          </a>           
+          <a data-aos="zoom-in" data-aos-delay="1400" href="#bloat-digest" class="tab-button">          
+            <div class="nws-tab-item">
+              <div class="nws-svg svg2">
+               <svg width="46" height="45" viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M49.79 14.864L42.79 5.864C42.6964 5.74372 42.5766 5.64641 42.4397 5.57952C42.3028 5.51262 42.1524 5.47789 42 5.478H34V1C34 0.734784 33.8946 0.480431 33.7071 0.292894C33.5196 0.105358 33.2652 0 33 0H1C0.734784 0 0.48043 0.105358 0.292893 0.292894C0.105357 0.480431 0 0.734784 0 1V24.478C0 24.7432 0.105357 24.9976 0.292893 25.1851C0.48043 25.3726 0.734784 25.478 1 25.478H13.55C13.2024 26.0838 13.0201 26.7703 13.0215 27.4688C13.0229 28.1672 13.2079 28.853 13.5579 29.4574C13.9079 30.0618 14.4107 30.5636 15.0158 30.9124C15.6209 31.2613 16.3071 31.4449 17.0055 31.4449C17.7039 31.4449 18.3901 31.2613 18.9952 30.9124C19.6003 30.5636 20.1031 30.0618 20.4531 29.4574C20.8031 28.853 20.9881 28.1672 20.9895 27.4688C20.9909 26.7703 20.8086 26.0838 20.461 25.478H36.55C36.2024 26.0838 36.0201 26.7703 36.0215 27.4688C36.0229 28.1672 36.2079 28.853 36.5579 29.4574C36.9079 30.0618 37.4107 30.5636 38.0158 30.9124C38.6209 31.2613 39.3071 31.4449 40.0055 31.4449C40.7039 31.4449 41.3901 31.2613 41.9952 30.9124C42.6003 30.5636 43.1031 30.0618 43.4531 29.4574C43.8031 28.853 43.9881 28.1672 43.9895 27.4688C43.9909 26.7703 43.8086 26.0838 43.461 25.478H49C49.2652 25.478 49.5196 25.3726 49.7071 25.1851C49.8946 24.9976 50 24.7432 50 24.478V15.478C50.0002 15.2557 49.9263 15.0396 49.79 14.864ZM17 29.446C16.4781 29.446 15.9775 29.2387 15.6084 28.8696C15.2393 28.5005 15.032 27.9999 15.032 27.478C15.032 26.9561 15.2393 26.4555 15.6084 26.0864C15.9775 25.7173 16.4781 25.51 17 25.51C17.5219 25.51 18.0225 25.7173 18.3916 26.0864C18.7607 26.4555 18.968 26.9561 18.968 27.478C18.968 27.9999 18.7607 28.5005 18.3916 28.8696C18.0225 29.2387 17.5219 29.446 17 29.446ZM40 29.446C39.4781 29.446 38.9775 29.2387 38.6084 28.8696C38.2393 28.5005 38.032 27.9999 38.032 27.478C38.032 26.9561 38.2393 26.4555 38.6084 26.0864C38.9775 25.7173 39.4781 25.51 40 25.51C40.5219 25.51 41.0225 25.7173 41.3916 26.0864C41.7607 26.4555 41.968 26.9561 41.968 27.478C41.968 27.9999 41.7607 28.5005 41.3916 28.8696C41.0225 29.2387 40.5219 29.446 40 29.446ZM32 2V18.978H2V2H32ZM2 20.978H32V23.478H2V20.978ZM48 23.478H34V7.478H41.511L48 15.821V23.478Z" fill="#545454"/>
+              </svg>
+              </div>            
+              <h4>{{ section.settings.icon_text3 }}</h4>            
+            </div>         
+          </a>           
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class = "container">
+    <!-- tabs start     -->
+    <div class="tab-contents">
+      <!-- tab one genral faqs   -->
+      <div id="general-faqs" class="active tab-content">
+        <div class="huzi-accordion-flex">
+          <div class="huzi-accordion-warp huzi-col-100">
+            {% for block in section.blocks %}
+            {% if block.settings.tab-category == 'general-faqs' %} 
+            {% assign g_count = g_count | plus: 1 %}
+            {% assign g_count_mod = g_count | modulo: 2 %}
+            {% if g_count_mod != 0 %}
+            <div class="huzi-ac-item" data-aos="fade-up" data-aos-delay="1200">
+              <h3 class="huzi-ac-title">{{ block.settings.accordion_title }}</h3>
+              <div class="huzi-ac-body">{{ block.settings.accordion_info }}</div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="huzi-accordion-warp huzi-col-100">
+            {% for block in section.blocks %}
+            {% if block.settings.tab-category == 'general-faqs' %} 
+            {% assign g_count2 = g_count2 | plus: 1 %}
+            {% assign g_count_mod2 = g_count2 | modulo: 2 %}
+            {% if g_count_mod2 == 0 %}
+            <div class="huzi-ac-item" data-aos="fade-up" data-aos-delay="1200">
+              <h3 class="huzi-ac-title">{{ block.settings.accordion_title }}</h3>
+              <div class="huzi-ac-body">{{ block.settings.accordion_info }}</div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div> 
+      </div>
+      <!--  tab two gut renew   -->
+      <div id="gut-renew" class="tab-content">
+        <div class="huzi-accordion-flex">
+          <div class="huzi-accordion-warp huzi-col-100">
+            {% for block in section.blocks %}
+            {% if block.settings.tab-category == 'gut-renew' %}
+            {% assign gut_count = gut_count | plus: 1 %}
+            {% assign gut_count_mod = gut_count | modulo: 2 %}
+            {% if gut_count_mod != 0 %}
+            <div class="huzi-ac-item" data-aos="fade-up" data-aos-delay="1200">
+              <h3 class="huzi-ac-title">{{ block.settings.accordion_title }}</h3>
+              <div class="huzi-ac-body">{{ block.settings.accordion_info }}</div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="huzi-accordion-warp huzi-col-100">
+            {% for block in section.blocks %}
+            {% if block.settings.tab-category == 'gut-renew' %}
+            {% assign gut_count2 = gut_count2 | plus: 1 %}
+            {% assign gut_count_mod2 = gut_count2 | modulo: 2 %}
+            {% if gut_count_mod2 == 0 %}
+            <div class="huzi-ac-item" data-aos="fade-up" data-aos-delay="1200">
+              <h3 class="huzi-ac-title">{{ block.settings.accordion_title }}</h3>
+              <div class="huzi-ac-body">{{ block.settings.accordion_info }}</div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>  
+      </div>
+      <!-- tab three bloat digest   -->
+      <div id="bloat-digest" class="tab-content">
+        <div class="huzi-accordion-flex">
+          <div class="huzi-accordion-warp huzi-col-100">
+            {% for block in section.blocks %}
+            {% if block.settings.tab-category == 'bloat-digest' %}
+            {% assign bloat_count = bloat_count | plus: 1 %}
+            {% assign bloat_count_mod = bloat_count | modulo: 2 %}
+            {% if bloat_count_mod != 0 %}
+            <div class="huzi-ac-item" data-aos="fade-up" data-aos-delay="1200">
+              <h3 class="huzi-ac-title">{{ block.settings.accordion_title }}</h3>
+              <div class="huzi-ac-body">{{ block.settings.accordion_info }}</div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="huzi-accordion-warp huzi-col-100">
+            {% for block in section.blocks %}
+            {% if block.settings.tab-category == 'bloat-digest' %} 
+            {% assign bloat_count2 = bloat_count2 | plus: 1 %}
+            {% assign bloat_count_mod2 = bloat_count2 | modulo: 2 %}
+            {% if bloat_count_mod2 == 0 %}
+            <div class="huzi-ac-item" data-aos="fade-up" data-aos-delay="1200">
+              <h3 class="huzi-ac-title">{{ block.settings.accordion_title }}</h3>
+              <div class="huzi-ac-body">{{ block.settings.accordion_info }}</div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>       
+      </div>
+      <!--  tabs ended     -->
+      <div class="nws-bottom-text">
+        <h2 data-aos="zoom-in" data-aos-delay="600" class="huzi-h2">{{ section.settings.btm_text }}</h2>
+        <div class="nws-btn-ones">{% if section.settings.btm_btn_text != blank %}<a data-aos="zoom-in" data-aos-delay="800" class="nws-btn-one" href="{{ section.settings.btm_btn_url }}">{{ section.settings.btm_btn_text }}</a>{% endif %}</div>
+      </div>
+    </div>    
+  </div>
+{% schema %}
+ {
+  "name": "nws faqs",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "textarea",
+      "id": "main_head",
+      "label": "Main Heading"
+    },
+    {
+      "type": "color",
+      "id": "head_color",
+      "label": "Main Heading Color"
+    },
+    {
+      "type": "textarea",
+      "id": "sub_head",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "color",
+      "id": "subh_color",
+      "label": "Sub-heading Color"
+    },
+    {
+      "type": "text",
+      "id": "icon_text1",
+      "label": "Icon Text One"
+    },
+    {
+      "type": "text",
+      "id": "icon_text2",
+      "label": "Icon Text Two"
+    },
+    {
+      "type": "text",
+      "id": "icon_text3",
+      "label": "Icon Text Three"
+    },
+    {
+      "type": "text",
+      "id": "btm_text",
+      "label": "After Accordian Heading"
+    },
+    {
+      "type": "text",
+      "id": "btm_btn_text",
+      "label": "after Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btm_btn_url",
+      "label": "After Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "NWS FAQs Accordian",
+      "settings": [
+        {
+          "type": "text",
+          "id": "accordion_title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "accordion_info",
+          "label": "Paragraph"
+        },
+        {
+          "type": "select",
+          "id": "tab-category",
+          "label": "Select Category",
+          "options": [
+            {
+              "value": "general-faqs",
+              "label": "General Questions"
+            },
+            {
+              "value": "gut-renew",
+              "label": "Product Questions"
+            },
+            {
+              "value": "bloat-digest",
+              "label": "Shipping & Returns"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script>
+  $('.nws-topbar-ul').slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 1,
+        focusOnSelect: true,
+        autoplay: false,
+        slidesToScroll: 1,
+  });
+
+  $('.nws-slider-section-ul').slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 1,
+        focusOnSelect: true,
+        autoplay: false,
+        slidesToScroll: 1,
+  });
+
+  $('.nws-pdp-slider').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 1,
+        focusOnSelect: true,
+        autoplay: true,
+        slidesToScroll: 1,
+  });
+
+  $('.nws-lp-reviews-content').slick({
+        dots: true,
+        arrows: false,
+        infinite: true,
+        slidesToShow: 4,
+        focusOnSelect: true,
+        autoplay: false,
+        slidesToScroll: 1,
+        responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+  });
+  
+  $('.after-before-slide').slick({
+        dots: false,
+        arrows: false,
+        infinite: true,
+        slidesToShow: 3,
+        centerMode: true,
+        autoplay: true,
+        centerPadding: '0px',
+        autoplaySpeed: 3000,
+        speed: 3000,
+        slidesToScroll: 1,
+        responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+  });
+
+    $('.nws-testimonial-slide').slick({
+        dots: false,
+        arrows: false,
+        infinite: true,
+        slidesToShow: 4.7,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        slidesToScroll: 1,
+        responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+  });
+  
+  $(".huzi-accordion-warp .huzi-ac-title").click(function(){
+    if($(this).next(".huzi-ac-body").hasClass("active")){
+      $(this).next(".huzi-ac-body").removeClass("active").slideUp();
+      $(this).removeClass("active");
+    } else {
+      $(".huzi-accordion-warp .huzi-ac-title").removeClass("active");
+      $(".huzi-ac-item .huzi-ac-body").removeClass("active").slideUp();
+      $(this).next(".huzi-ac-body").addClass("active").slideDown();
+      $(this).addClass("active");
+    }
+  });
+
+  // Input script
+  $(".huzi-input-warp .huzi-input").on('focus',function(){
+    var all_input = $(".huzi-input-warp .huzi-input");
+    for (i = 0; i < all_input.length; ++i) {
+      if( all_input[i].value == '' ){
+        $(all_input[i]).parent().removeClass("active");
+      }
+    }
+    //         $(".huzi-input-warp .huzi-input").removeClass("active");
+    //         $(this).addClass("active");
+    $(this).parent().addClass("active");
+  });
+
+  $(window).on('load', function(){
+    var all_input = $(".huzi-input-warp .huzi-input");
+    for (i = 0; i < all_input.length; ++i) {
+      if( all_input[i].value == '' ){
+        $(all_input[i]).parent().removeClass("active");
+      }else{
+        $(all_input[i]).parent().addClass("active");
+      }
+    }
+  });
+
+  //tabs
+  $(function () {
+    $('.tab-button').click(function () {
+      // Check for active
+      $('.tab-button').removeClass('active');
+      $(this).addClass('active');
+      // Display active tab
+      let currentTab = $(this).attr('href');
+      $('.tab-content').hide();
+      $(currentTab).show();
+      return false;
+    });
+  });
+
+  $("#huzi-faq-page-list").on('change', function(){
+    var list_val = $(this).val();
+    $('.nws-faqs .tab-contents .tab-content').css('display','none');
+    $(list_val).css('display','block');
+  });
+
+  $(".nws-pdp-variants .nws-pdp-variant").click(function(){
+    $(".nws-pdp-variants .nws-pdp-variant").removeClass('nws-active');
+    $(this).addClass('nws-active');
+    var val = $(this).attr("data-val");
+    var id = $(this).attr("data-id");
+    var img = $(this).attr("data-img");
+    $(".nws-btn-pdp").attr('href','/cart/'+id+':1');
+    $(".nws-selection-name span").text(val);
+    $('.nws-product-images.nws-pdp-option').addClass('nws-act-img');
+    $('.nws-product-images.nws-pdp-option img').removeClass('nws-active-img');
+    $('.nws-product-images.nws-pdp-option img[data-option="'+img+'"]').addClass('nws-active-img');
+  });
+
+  // $("[href^='#']").click(function() {
+  //       id=$(this).attr("href")
+  //       $('html, body').animate({
+  //           scrollTop: $(id).offset().top - 0
+  //       }, 2000);
+  //   });
+
+  $('.nws-modal-toggle').on('click', function(e){
+    e.preventDefault();
+    $('.nws-h-popup').hide();
+    $('.nws-txt-popup').hide();
+    var cls = $(this).attr('data-val');
+    $('.nws-h-popup.'+cls).show();
+    $('.nws-txt-popup.'+cls).show();
+    $('.nws-modal').addClass('nws-is-visible');
+  });
+  $('.nws-modal-close').on('click', function(e){
+    e.preventDefault();
+    $('.nws-modal').removeClass('nws-is-visible');
+  });
+  $('.nws-modal-overlay').on('click', function(e){
+    e.preventDefault();
+    $('.nws-modal').removeClass('nws-is-visible');
+  });
+</script>
